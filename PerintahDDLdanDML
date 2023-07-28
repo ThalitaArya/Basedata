@@ -1,1 +1,201 @@
+~ $ mysql -u ThalitaAW -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 4
+Server version: 10.11.4-MariaDB MariaDB Server
 
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> create database tokobuku;
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [(none)]> use tokobuku;
+Database changed
+MariaDB [tokobuku]> create table tokobuku(
+    -> code_buku varchar (5) not null,
+    -> nama_buku varchar (25) not null,
+    -> nomor_isbn integer (15) not null,
+    -> penerbit varchar (10) not null,
+    -> tahun_terbit date not null,
+    -> penulis varchar (20) not null,
+    -> stok integer (70) not null,
+    -> PRIMARY KEY (code_buku)
+    -> );
+Query OK, 0 rows affected (0.044 sec)
+
+MariaDB [tokobuku]> insert into tokobuku(code_buku,nama_buku,nomor_isbn,penerbit,tahun_terbit,penulis,stok)
+    -> values ("A001","goosebumps",9798765,"granmedia"    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 3
+MariaDB [tokobuku]> insert into tokobuku(code_buku,nama_buku,nomor_isbn,penerbit,tahun_terbit,penulis,stok)
+    -> values ("A001","Hujan",97987,"gramedia","2016-01-16","Tere Liye",100);
+Query OK, 1 row affected (0.094 sec)
+
+MariaDB [tokobuku]> insert into tokobuku(code_buku,nama_buku,nomor_isbn,penerbit,tahun_terbit,penulis,stok)
+    -> ("boo2","basis data",9798753,"granmedi00);         "> );
+    "> Ctrl-C -- exit!
+Aborted
+~ $ mysql -u ThalitaAW -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 5
+Server version: 10.11.4-MariaDB MariaDB Server
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use tokobuku;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [tokobuku]> insert into tokobuku(code_buku,nam    -> nomor_isbn,penerbit,tahun_terbit,penulis,stok)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 3
+MariaDB [tokobuku]> use tokobuku;
+Database changed
+MariaDB [tokobuku]> insert into tokobuku(code_buku,nam    -> nomor_isbn,penerbit,tahun_terbit,penulis,stok)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 3
+MariaDB [tokobuku]> use tokobuku;
+Database changed
+MariaDB [tokobuku]> insert into tokobuku(code_nama,nama_buku,nomor_isbn,penerbit,tahun_terbit,penulis,stok);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [tokobuku]> use tokobuku;
+Database changed
+MariaDB [tokobuku]> insert into tokobuku(code_nama,nama_buku,nomor_isbn,penerbit,tahun_terbit,penulis,stok)values ("A002","Laut Bercerita",97988,"Gramedia","2017-03-07","Leilla S.C","50");
+ERROR 1054 (42S22): Unknown column 'code_nama' in 'field list'
+MariaDB [tokobuku]> use tokobuku;
+Database changed
+MariaDB [tokobuku]> insert into tokobuku(code_buku,nama_buku,nomor_isbn,penerbit,tahun_terbit,penulis,stok) values ("A002","Laut Bercerita",97988,"gramedia","2017-02-07","Leilla S.C",50);
+Query OK, 1 row affected (0.034 sec)
+
+MariaDB [tokobuku]> select * from tokobuku;
++-----------+----------------+------------+----------+--------------+------------+------+
+| code_buku | nama_buku      | nomor_isbn | penerbit | tahun_terbit | penulis    | stok |
++-----------+----------------+------------+----------+--------------+------------+------+
+| A001      | Hujan          |      97987 | gramedia | 2016-01-16   | Tere Liye  |  100 |
+| A002      | Laut Bercerita |      97988 | gramedia | 2017-02-07   | Leilla S.C |   50 |
++-----------+----------------+------------+----------+--------------+------------+------+
+2 rows in set (0.021 sec)
+
+MariaDB [tokobuku]> create table distributor(
+    -> id_distributor int (15),
+    -> nama_distributor varchar (25),
+    -> no_telp int (20),
+    -> alamat varchar (30),
+    -> PRIMARY KEY (id_distributor)
+    -> );
+Query OK, 0 rows affected (0.091 sec)
+
+MariaDB [tokobuku]> insert into distributor(id_distributor,nama_distributor,no_telp,alamat) values (0010," Maju",089532360,"Semarang");
+Query OK, 1 row affected (0.070 sec)
+
+MariaDB [tokobuku]> insert into distributor(id_distributor,nama_distributor,no_telp,alamat) values (0010,"Hebat",085712438600,"Jakarta");
+ERROR 1264 (22003): Out of range value for column 'no_telp' at row 1
+MariaDB [tokobuku]> insert into distributor(id_distributor,nama_distributor,no_telp,alamat) values (0010,"Hebat",0895332360,"Jakarta");
+ERROR 1062 (23000): Duplicate entry '10' for key 'PRIMARY'
+MariaDB [tokobuku]> insert into distributor(id_distributor,nama_distributor,no_telp,alamat) values (0007,"Hebat",0895332360,"Jakarta");
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [tokobuku]> insert into distributor(id_distributor,nama_distributor,no_telp,alamat) values (0008,"Bisa",0854336792,"Semarang");
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [tokobuku]> select * from distributor;
++----------------+------------------+-----------+----------+
+| id_distributor | nama_distributor | no_telp   | alamat   |
++----------------+------------------+-----------+----------+
+|              7 | Hebat            | 895332360 | Jakarta  |
+|              8 | Bisa             | 854336792 | Semarang |
+|             10 |  Maju            |  89532360 | Semarang |
++----------------+------------------+-----------+----------+
+3 rows in set (0.012 sec)
+
+MariaDB [tokobuku]> create table pembelian(
+    -> id_order int(11),
+    -> id_barang int(11),
+    -> id_pembeli int(11),
+    -> tanggal date,
+    -> PRIMARY KEY (id_order)
+    -> );
+Query OK, 0 rows affected (0.044 sec)
+
+MariaDB [tokobuku]> insert into pembelian(id_order,id_barang,id_pembeli,tanggal) values (6999,17378,12345,"2023-07-20");
+Query OK, 1 row affected (0.008 sec)
+
+MariaDB [tokobuku]> insert into pembelian(id_order,id_barang,id_pembeli,tanggal) values (7000,17379,12346,"2023-07-23");
+Query OK, 1 row affected (0.013 sec)
+
+MariaDB [tokobuku]> select * from pembelian;
++----------+-----------+------------+------------+
+| id_order | id_barang | id_pembeli | tanggal    |
++----------+-----------+------------+------------+
+|     6999 |     17378 |      12345 | 2023-07-20 |
+|     7000 |     17379 |      12346 | 2023-07-23 |
++----------+-----------+------------+------------+
+2 rows in set (0.001 sec)
+
+MariaDB [tokobuku]> create table pelanggan(
+    -> id_pelanggan int(11),
+    -> nama_pembeli varchar(30),
+    -> no_telp varchar(14),
+    -> alamat varchar(15),
+    -> PRIMARY KEY (id_pelanggan)
+    -> );
+Query OK, 0 rows affected (0.042 sec)
+
+MariaDB [tokobuku]> insert into pelanggan(id_pelanggan,nama_pembeli,no_telp,alamat) values
+    -> (12345,"Dylan",08512365,"BSB"),
+    -> (12346,"Charlize",0881145379,"Ngaliyan");
+Query OK, 2 rows affected (0.024 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+MariaDB [tokobuku]> select * from pelanggan;
++--------------+--------------+-----------+----------+
+| id_pelanggan | nama_pembeli | no_telp   | alamat   |
++--------------+--------------+-----------+----------+
+|        12345 | Dylan        | 8512365   | BSB      |
+|        12346 | Charlize     | 881145379 | Ngaliyan |
++--------------+--------------+-----------+----------+
+2 rows in set (0.001 sec)
+
+MariaDB [tokobuku]> create table penjualan(
+    -> id_order int,
+    -> id_barang int,
+    -> harga int,
+    -> jumlah int,
+    -> PRIMARY KEY (id_order)
+    -> );
+Query OK, 0 rows affected (0.067 sec)
+
+MariaDB [tokobuku]> insert into penjualan(id_order,id_barang,harga,jumlah) values
+    -> (6017,15056,170000,3),
+    -> (6018,15058,32000,1);
+Query OK, 2 rows affected (0.009 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+MariaDB [tokobuku]> select * from penjualan;
++----------+-----------+--------+--------+
+| id_order | id_barang | harga  | jumlah |
++----------+-----------+--------+--------+
+|     6017 |     15056 | 170000 |      3 |
+|     6018 |     15058 |  32000 |      1 |
++----------+-----------+--------+--------+
+2 rows in set (0.001 sec)
+
+MariaDB [tokobuku]> update penjualan set id_barang = '1703' where id_order = '6017';
+Query OK, 1 row affected (0.056 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [tokobuku]> select * from penjualan;
++----------+-----------+--------+--------+
+| id_order | id_barang | harga  | jumlah |
++----------+-----------+--------+--------+
+|     6017 |      1703 | 170000 |      3 |
+|     6018 |     15058 |  32000 |      1 |
++----------+-----------+--------+--------+
+2 rows in set (0.001 sec)
+
+MariaDB [tokobuku]>
